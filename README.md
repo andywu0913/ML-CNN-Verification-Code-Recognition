@@ -1,6 +1,6 @@
 # Verification Code Recognition using Machine Learning CNN
 
-The inspiration of doing this side project comes from the course selection system in my college. Students are required to fill in additional varification code field [varification code image](data/199798.png) before logging in the system since few years ago. Therefore, I am interested in building up a CNN for recognizing the varification code.
+The inspiration of doing this side project comes from the course selection system in my college. Students are required to fill in additional varification code field ![varification code image](data/199798.png) before logging in the system since few years ago. Therefore, I am interested in building up a CNN for recognizing the varification code.
 
 ## Usage
 
