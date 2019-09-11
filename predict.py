@@ -10,6 +10,7 @@ img_cols = None
 img_channels = None
 digits_in_img = 6
 model = None
+np.set_printoptions(suppress=True, linewidth=150, precision=9, formatter={'float': '{: 0.9f}'.format})
 
 def split_digits_in_img(img_array):
     x_list = list()
@@ -36,5 +37,10 @@ img_rows, img_cols, img_channels = img_array.shape
 x_list = split_digits_in_img(img_array)
 
 # predict
-y_list = model.predict_classes(np.array(x_list), batch_size=digits_in_img, verbose=1)
-print(y_list)
+varification_code = list()
+for i in range(digits_in_img):
+    confidences = model.predict(np.array([x_list[i]]), verbose=0)
+    result_class = model.predict_classes(np.array([x_list[i]]), verbose=0)
+    varification_code.append(result_class[0])
+    print('Digit {0}: Confidence=> {1}    Predict=> {2}'.format(i + 1, np.squeeze(confidences), np.squeeze(result_class)))
+print('Predicted varification code:', varification_code)

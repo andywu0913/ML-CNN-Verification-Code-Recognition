@@ -15,8 +15,8 @@ img_rows = None
 img_cols = None
 img_channels = None
 digits_in_img = 6
-random.seed(1)
-np.random.seed(1)
+random.seed(1)    # set thee seed only when testing and tuning
+np.random.seed(1) # set thee seed only when testing and tuning
 x_list = list()
 y_list = list()
 x_train = list()
@@ -67,9 +67,11 @@ model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimi
 
 # start training
 model.fit(np.array(x_train), np.array(y_train), batch_size=digits_in_img, epochs=epochs, verbose=1, validation_data=(np.array(x_test), np.array(y_test)))
-score = model.evaluate(np.array(x_test), np.array(y_test), verbose=0)
-print('Test model loss:', score[0])
-print('Test model accuracy:', score[1])
+
+# evaluate model
+loss, accuracy = model.evaluate(np.array(x_test), np.array(y_test), verbose=0)
+print('Test loss:', loss)
+print('Test accuracy:', accuracy)
 
 # save the model
 model.save('model/cnn_model.h5')
