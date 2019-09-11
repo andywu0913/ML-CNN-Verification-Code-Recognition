@@ -26,11 +26,12 @@ for i in range(times):
     page_content = opener.open('https://www.ais.tku.edu.tw/EleCos/login.aspx').read().decode('utf-8')
 
     # get the varification code image
-    varification_code_url = 'https://www.ais.tku.edu.tw/EleCos/BaseData/{0}'.format(re.findall('confirm.ashx.[^"]*', page_content))
-    if len(varification_code_url) == 0:
+    confirm_page = re.findall('confirm.ashx.[^"]*', page_content)
+    if len(confirm_page) == 0:
         print('Cannot locate the verification code image.')
         exit(-1)
-    img_binary = opener.open(varification_code_url[0]).read()
+    varification_code_url = 'https://www.ais.tku.edu.tw/EleCos/BaseData/{0}'.format(confirm_page[0])
+    img_binary = opener.open(varification_code_url).read()
 
     varification_code = ''
 
@@ -44,6 +45,7 @@ for i in range(times):
             sha_1.update(str(k).encode('utf8'))
             if sha_1.hexdigest() == varification_code_array[j]:
                 varification_code += str(k)
+                break
 
     with open('data/{0}.png'.format(varification_code), 'wb')  as file:
         print('{0} => {1}.png'.format(i + 1, varification_code))
