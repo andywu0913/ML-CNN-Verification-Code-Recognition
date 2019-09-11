@@ -8,13 +8,13 @@ from tensorflow.keras.preprocessing.image import load_img
 img_rows = None
 img_cols = None
 img_channels = None
-numbers_in_img = 6
+digits_in_img = 6
 model = None
 
-def split_numbers_in_img(img_array):
+def split_digits_in_img(img_array):
     x_list = list()
-    for i in range(numbers_in_img):
-        step = img_cols // numbers_in_img
+    for i in range(digits_in_img):
+        step = img_cols // digits_in_img
         x_list.append(img_array[:, i * step:(i + 1) * step] / 255)
     return x_list
 
@@ -33,8 +33,8 @@ else:
 img = load_img('{0}'.format(img_filename), color_mode='grayscale')
 img_array = img_to_array(img)
 img_rows, img_cols, img_channels = img_array.shape
-x_list = split_numbers_in_img(img_array)
+x_list = split_digits_in_img(img_array)
 
 # predict
-y_list = model.predict_classes(np.array(x_list), batch_size=numbers_in_img, verbose=1)
+y_list = model.predict_classes(np.array(x_list), batch_size=digits_in_img, verbose=1)
 print(y_list)
