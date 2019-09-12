@@ -9,14 +9,11 @@ from tensorflow.keras import models
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.preprocessing.image import load_img
 
-num_img_arrays_to_load = 100
 epochs = 10
 img_rows = None
 img_cols = None
 img_channels = None
 digits_in_img = 6
-random.seed(1)    # set thee seed only when testing and tuning
-np.random.seed(1) # set thee seed only when testing and tuning
 x_list = list()
 y_list = list()
 x_train = list()
@@ -31,10 +28,9 @@ def split_digits_in_img(img_array, x_list, y_list):
         y_list.append(img_filename[i])
 
 # load all img filenames
-all_img_filenames = os.listdir('data')
+img_filenames = os.listdir('data')
 
 # load images as arrays
-img_filenames =  np.random.choice(all_img_filenames, num_img_arrays_to_load, replace=False)
 for img_filename in img_filenames:
     img = load_img('data/{0}'.format(img_filename), color_mode='grayscale')
     img_array = img_to_array(img)
