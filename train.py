@@ -31,6 +31,8 @@ img_filenames = os.listdir('data')
 
 # load images as arrays
 for img_filename in img_filenames:
+    if '.png' not in img_filename:
+        continue
     img = load_img('data/{0}'.format(img_filename), color_mode='grayscale')
     img_array = img_to_array(img)
     img_rows, img_cols, img_channels = img_array.shape
