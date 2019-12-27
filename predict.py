@@ -7,7 +7,6 @@ from tensorflow.keras.preprocessing.image import load_img
 
 img_rows = None
 img_cols = None
-img_channels = None
 digits_in_img = 6
 model = None
 np.set_printoptions(suppress=True, linewidth=150, precision=9, formatter={'float': '{: 0.9f}'.format})
@@ -31,9 +30,9 @@ if len(sys.argv) > 1:
     img_filename = sys.argv[1]
 else:
     img_filename = input('Varification code img filename: ')
-img = load_img('{0}'.format(img_filename), color_mode='grayscale')
+img = load_img(img_filename, color_mode='grayscale')
 img_array = img_to_array(img)
-img_rows, img_cols, img_channels = img_array.shape
+img_rows, img_cols, _ = img_array.shape
 x_list = split_digits_in_img(img_array)
 
 # predict

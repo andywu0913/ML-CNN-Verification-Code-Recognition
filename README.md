@@ -5,15 +5,15 @@ Students are required to fill in an additional varification code field before lo
 
 A sample of the varification code in the course selection system.
 
-![varification code image](data/627318.png)
+![varification code image](training/627318.png)
 
 ## Structure
 
 ### Directories
 
-- `data/`: Varification code images for training should go here.
-- `model/`: The model should be saved in this directory after training.
-- `predict/`: Other downloaded varification code images for you to test the model.
+- `training/`: Varification code images for training should go here.
+- `testing/`: Other downloaded varification code images for you to test the model.
+- `model/`: The model will be saved in this directory after training.
 
 ### Python files
 
@@ -28,7 +28,7 @@ Download 100 new varification code images.
 python downloadData.py 100
 ```
 
-Train the model with images inside `data/`.
+Train the model with images inside `training/`.
 ```
 python train.py
 ```

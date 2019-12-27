@@ -47,6 +47,6 @@ for i in range(times):
                 varification_code += str(k)
                 break
 
-    with open('data/{0}.png'.format(varification_code), 'wb')  as file:
+    with open('training/{0}.png'.format(varification_code), 'wb')  as file:
         print('{0} => {1}.png'.format(i + 1, varification_code))
         file.write(img_binary)

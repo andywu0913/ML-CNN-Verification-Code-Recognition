@@ -1,6 +1,5 @@
 import numpy as np
 import os
-import random
 from sklearn.model_selection import train_test_split
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -11,7 +10,6 @@ from tensorflow.keras.preprocessing.image import load_img
 epochs = 10
 img_rows = None
 img_cols = None
-img_channels = None
 digits_in_img = 6
 x_list = list()
 y_list = list()
@@ -27,16 +25,17 @@ def split_digits_in_img(img_array, x_list, y_list):
         y_list.append(img_filename[i])
 
 # load all img filenames
-img_filenames = os.listdir('data')
+img_filenames = os.listdir('training')
 
 # load images as arrays
 for img_filename in img_filenames:
     if '.png' not in img_filename:
         continue
-    img = load_img('data/{0}'.format(img_filename), color_mode='grayscale')
+    img = load_img('training/{0}'.format(img_filename), color_mode='grayscale')
     img_array = img_to_array(img)
-    img_rows, img_cols, img_channels = img_array.shape
+    img_rows, img_cols, _ = img_array.shape
     split_digits_in_img(img_array, x_list, y_list)
+
 y_list = keras.utils.to_categorical(y_list, num_classes=10)
 
 # split data into training set and testing set
