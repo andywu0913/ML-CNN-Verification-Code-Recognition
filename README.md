@@ -35,5 +35,5 @@ python train.py
 
 Predict a provided varification code image that the model has never seen before.
 ```
-python predict.py predict/702203.png
+python predict.py testing/702203.png
 ```
